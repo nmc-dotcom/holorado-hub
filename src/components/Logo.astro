@@ -2,7 +2,7 @@
 interface Props { size?: number; withText?: boolean; }
 const { size = 34, withText = true } = Astro.props;
 ---
-<a href="/" class="logo" aria-label="홀로라도 홈">
+<a href="/" class="logo" aria-label="HOLORADO 홈">
   <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden="true">
     <ellipse cx="32" cy="47" rx="19" ry="6.5" fill="#D8A76B"/>
     <path d="M14 45 Q32 37 50 45 Q50 49 32 50.5 Q14 49 14 45 Z" fill="#3E8E5F"/>
@@ -12,10 +12,23 @@ const { size = 34, withText = true } = Astro.props;
     <path d="M20 55 Q23.5 53 27 55" stroke="#9BC7DA" stroke-width="2" fill="none" stroke-linecap="round"/>
     <path d="M37 55 Q40.5 53 44 55" stroke="#9BC7DA" stroke-width="2" fill="none" stroke-linecap="round"/>
   </svg>
-  {withText && <span class="logo-text serif">홀로라도</span>}
+  {/* 1. 텍스트를 영문 대문자로 변경하고, serif 클래스를 제거하여 단단한 폰트로 변경합니다. */}
+  {withText && <span class="logo-text">HOLORADO</span>}
 </a>
+
 <style>
   .logo { display: inline-flex; align-items: center; gap: 9px; text-decoration: none !important; }
-  .logo-text { font-size: 21px; font-weight: 800; color: var(--green-deep); letter-spacing: -0.02em; }
+  
+  .logo-text { 
+    font-family: var(--font-sans);   /* 명조 대신 단단한 Pretendard(고딕) 계열 적용 */
+    font-size: 19px;                 /* 자간이 넓어지므로 기존 21px에서 밸런스를 위해 살짝 조절 */
+    font-weight: 800; 
+    color: var(--green-deep); 
+    text-transform: uppercase;       /* 확실하게 대문자로 고정 */
+    
+    /* 🌟 핵심: 자간을 좁은 마이너스(-0.02em)에서 넓은 플러스(0.16em)로 변경하여 간판 무드 연출 */
+    letter-spacing: 0.16em; 
+  }
+  
   .logo:hover .logo-text { color: var(--green); }
 </style>
