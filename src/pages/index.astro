@@ -45,6 +45,10 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 <style>
   .block { padding: 20px 0; }
   .head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+  @media (max-width: 560px) {
+    .head { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .block { padding: 14px 0; }
+  }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px; }
   .tools-block { margin-top: 36px; }
   .tools-intro { text-align: center; max-width: 560px; margin: 0 auto 26px; }

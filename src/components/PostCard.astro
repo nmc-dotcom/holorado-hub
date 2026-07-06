@@ -16,8 +16,13 @@ const date = pubDate.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long
 </a>
 <style>
   .post-card { display: flex; flex-direction: column; overflow: hidden; text-decoration: none !important; height: 100%; }
-  .thumb { height: 116px; display: grid; place-items: center; background: color-mix(in srgb, var(--c) 14%, var(--paper)); }
-  .thumb span { font-size: 44px; }
+  .thumb { height: 104px; display: grid; place-items: center; background: color-mix(in srgb, var(--c) 14%, var(--paper)); }
+  .thumb span { font-size: 42px; }
+  @media (max-width: 560px) {
+    .thumb { height: 84px; }
+    .thumb span { font-size: 36px; }
+    .title { font-size: 18px; }
+  }
   .body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
   .title { font-size: 19px; color: var(--green-deep); margin: 2px 0; line-height: 1.35; }
   .desc { font-size: 14px; color: var(--muted); margin: 0; line-height: 1.6;

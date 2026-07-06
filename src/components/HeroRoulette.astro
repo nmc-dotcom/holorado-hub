@@ -11,11 +11,10 @@ const WORDS = [
   <div class="container hero-inner">
     <p class="hero-eyebrow">1인가구 · 요리 · 생산성 · AI 이야기</p>
     <h1 class="hero-title">
-      <span class="fixed">홀로라도</span>
-      <span class="roll" id="roll" aria-live="polite">
-        <span class="roll-word" id="rollWord">행복하</span>
+      <span class="line1">홀로라도</span>
+      <span class="line2">
+        <span class="roll" id="roll" aria-live="polite"><span class="roll-word" id="rollWord">행복하</span></span><span class="me">&nbsp;ME!!</span>
       </span>
-      <span class="fixed me">ME!!</span>
     </h1>
     <p class="hero-sub">{SITE.tagline}. 혼자 사는 일상을 조금 더 잘, 조금 더 즐겁게.</p>
     <div class="hero-actions">
@@ -48,27 +47,33 @@ const WORDS = [
 </script>
 
 <style>
-  .hero { padding: clamp(48px, 9vw, 96px) 0 clamp(40px, 7vw, 72px); }
+  .hero { padding: clamp(40px, 8vw, 96px) 0 clamp(36px, 6vw, 72px); }
   .hero-inner { text-align: center; }
   .hero-eyebrow {
-    font-size: 14px; font-weight: 700; letter-spacing: 0.04em; color: var(--terracotta);
-    margin: 0 0 16px;
+    font-size: clamp(13px, 3.4vw, 15px); font-weight: 700; letter-spacing: 0.02em;
+    color: var(--terracotta); margin: 0 0 14px;
   }
+  /* 데스크톱: 한 줄 / 모바일: "홀로라도" 윗줄, "___ ME!!" 아랫줄 — 단어와 ME는 항상 붙어있음 */
   .hero-title {
-    font-size: clamp(38px, 8vw, 76px); line-height: 1.1; margin: 0 0 20px; color: var(--green-deep);
-    display: flex; flex-wrap: wrap; gap: 0.28em; justify-content: center; align-items: baseline;
+    font-size: clamp(34px, 8.5vw, 76px); line-height: 1.12; margin: 0 0 18px; color: var(--green-deep);
   }
-  .hero-title .fixed { white-space: nowrap; }
-  .hero-title .me { color: var(--terracotta); }
-  .roll {
-    display: inline-block; min-width: 3.2em; position: relative;
-    color: var(--green-soft); text-align: center;
-  }
-  .roll-word { display: inline-block; transition: none; }
+  .hero-title .line1 { display: inline; }
+  .hero-title .line2 { display: inline; white-space: nowrap; }  /* ME 절대 안 쪼개짐 */
+  .hero-title .line1::after { content: ' '; }
+  .me { color: var(--terracotta); white-space: nowrap; }
+  .roll { display: inline-block; min-width: 3.2em; text-align: center; color: var(--green-soft); }
+  .roll-word { display: inline-block; }
   .rolling-out .roll-word { animation: rollOut .22s ease forwards; }
   .rolling-in .roll-word { animation: rollIn .26s cubic-bezier(.2,.9,.3,1.2) forwards; }
   @keyframes rollOut { to { transform: translateY(-0.5em); opacity: 0; } }
   @keyframes rollIn { from { transform: translateY(0.6em); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-  .hero-sub { color: var(--muted); font-size: clamp(15px, 2.2vw, 18px); margin: 0 auto 28px; max-width: 30em; }
+  .hero-sub { color: var(--muted); font-size: clamp(14px, 3.6vw, 18px); margin: 0 auto 26px; max-width: 30em; padding: 0 6px; }
   .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* 모바일: "홀로라도"와 "___ ME!!"를 각각 한 줄씩 */
+  @media (max-width: 560px) {
+    .hero-title .line1, .hero-title .line2 { display: block; }
+    .hero-title .line1::after { content: none; }
+    .roll { min-width: 0; }
+  }
 </style>
