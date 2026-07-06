@@ -119,3 +119,41 @@ pre code {
   font-size: 85%;
   font-family: monospace;
 }
+
+/* ───────────────────────────────────────────────
+   Astro 코드 블록 복사 버튼 스타일
+─────────────────────────────────────────────── */
+/* 버튼의 기준점이 될 pre 태그에 position 설정 */
+pre {
+  position: relative;
+  padding-top: 2.5rem !important; /* 상단에 버튼이 들어갈 여유 공간 확보 */
+}
+
+/* 복사 버튼 기본 스타일 (어두운 코드창에 어울리는 미니멀 톤) */
+.copy-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-family: var(--font-sans);
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* 복사가 완료되었을 때 (홀로라도 시그니처 초록색 활용) */
+.copy-button.copied {
+  color: #fff;
+  background: var(--green);
+  border-color: var(--green-soft);
+}
