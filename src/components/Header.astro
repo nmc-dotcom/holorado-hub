@@ -1,0 +1,37 @@
+---
+import Logo from './Logo.astro';
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/blog', label: '이야기' },
+  { href: '/tools', label: '도구' },
+  { href: '/about', label: '소개' },
+];
+const isActive = (href: string) => path === href || (href !== '/' && path.startsWith(href));
+---
+<header class="site-header">
+  <div class="container bar">
+    <Logo />
+    <nav aria-label="주요 메뉴">
+      {nav.map((n) => (
+        <a href={n.href} class:list={['nav-link', { active: isActive(n.href) }]}>{n.label}</a>
+      ))}
+    </nav>
+  </div>
+</header>
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(243, 238, 224, 0.85); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+  nav { display: flex; gap: 4px; }
+  .nav-link {
+    font-weight: 700; font-size: 15px; color: var(--muted);
+    padding: 8px 14px; border-radius: 999px; text-decoration: none !important;
+    transition: background .15s ease, color .15s ease;
+  }
+  .nav-link:hover { color: var(--green); background: var(--cream-deep); }
+  .nav-link.active { color: var(--green); background: rgba(47,107,79,0.10); }
+  @media (max-width: 520px) { .nav-link { padding: 8px 10px; font-size: 14px; } }
+</style>

@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ToolCard from '../components/ToolCard.astro';
+import { TOOLS } from '../consts';
+---
+<BaseLayout title="도구" description="홀로라도가 만든 무료 도구 모음. 회원가입 없이, 파일을 서버에 올리지 않고 브라우저에서 바로 쓸 수 있습니다.">
+  <div class="container page">
+    <header class="page-head">
+      <p class="eyebrow">홀로라도가 만든 것</p>
+      <h1 class="section-title">도구 모음</h1>
+      <p class="sub">업무와 일상에 도움이 되는 작은 도구들이에요. 필요한 걸 골라 바로 써보세요 — 설치도, 가입도 필요 없습니다.</p>
+    </header>
+    <div class="tools-grid">
+      {TOOLS.map((t) => (
+        <ToolCard name={t.name} desc={t.desc} url={t.url} emoji={t.emoji} status={t.status} />
+      ))}
+    </div>
+    <p class="note">더 만들면 여기에 하나씩 늘어날 거예요. 🌱</p>
+  </div>
+</BaseLayout>
+<style>
+  .page { padding: 44px 0 20px; }
+  .page-head { margin-bottom: 28px; }
+  .sub { color: var(--muted); font-size: 16px; margin-top: 6px; max-width: 40em; }
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+  .note { text-align: center; color: var(--muted); margin-top: 30px; font-size: 14px; }
+</style>

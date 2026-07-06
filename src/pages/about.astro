@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../consts';
+---
+<BaseLayout title="소개" description="홀로라도는 혼자 사는 일상을 조금 더 잘 꾸려가기 위한 이야기와 도구를 나누는 공간입니다.">
+  <div class="read page">
+    <p class="eyebrow">소개</p>
+    <h1>홀로라도 이야기</h1>
+
+    <p>
+      <strong>홀로라도</strong>는 "홀로여도" 그리고 "무엇이라도 괜찮다"는 마음에서 시작한 이름이에요.
+      혼자 사는 삶이 외롭고 부족한 게 아니라, 오히려 잘 정돈되고 여유로울 수 있다고 믿습니다.
+      그 믿음을 담아 <strong>1인가구 생활, 요리, 생산성, 그리고 AI 활용</strong>에 관한 이야기를 씁니다.
+    </p>
+
+    <h2>무엇을 다루나요</h2>
+    <ul>
+      <li><strong>1인가구</strong> — 혼자 사는 공간과 살림을 잘 꾸리는 실용적인 방법</li>
+      <li><strong>요리</strong> — 재료를 남기지 않고, 부담 없이 해먹는 1인분 이야기</li>
+      <li><strong>생산성 · AI</strong> — 일과 일상을 가볍게 만들어 주는 도구와 AI 활용법</li>
+    </ul>
+
+    <h2>도구도 만듭니다</h2>
+    <p>
+      글을 쓰다 보면, 직접 만들어 나누고 싶은 것도 생깁니다. 그래서 홀로라도는 업무와 일상에 쓸모 있는
+      작은 <a href="/tools">무료 도구</a>도 만들어요. 예를 들어 <a href="https://pdf.holorado.me" rel="noopener">OptiPDF</a>는
+      PDF 용량을 브라우저에서 바로 줄여주는 도구로, 파일을 서버에 올리지 않아 안전합니다.
+    </p>
+
+    <h2>약속</h2>
+    <blockquote>
+      과장하지 않고, 직접 해보고 도움이 된 것만 씁니다. 광고가 있더라도 콘텐츠가 먼저입니다.
+    </blockquote>
+
+    <p>
+      문의는 <a href="mailto:smjeong1891@gmail.com">smjeong1891@gmail.com</a> 으로 편하게 주세요.
+    </p>
+  </div>
+</BaseLayout>
+<style>
+  .page { padding: 44px 0 20px; }
+  .read h1 { font-size: clamp(30px, 5vw, 40px); color: var(--green-deep); margin: 8px 0 20px; }
+  .read h2 { font-size: 22px; color: var(--green-deep); margin: 34px 0 10px; padding-left: 12px; border-left: 4px solid var(--green-soft); }
+  .read p, .read li { font-size: 16.5px; line-height: 1.85; color: var(--ink); }
+  .read strong { color: var(--green); }
+  .read ul { padding-left: 22px; }
+  .read li { margin-bottom: 8px; }
+  .read blockquote { margin: 18px 0; padding: 14px 20px; background: var(--cream-deep); border-radius: 12px;
+    border-left: 4px solid var(--terracotta); }
+  .read a { color: var(--terracotta); text-decoration: underline; text-underline-offset: 3px; }
+</style>

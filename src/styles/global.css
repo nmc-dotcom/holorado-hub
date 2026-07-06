@@ -1,0 +1,96 @@
+/* ───────────────────────────────────────────────
+   홀로라도 · 디자인 토큰 & 전역 스타일
+   따뜻한 미니멀 (동물의숲 무드)
+   딥그린 메인 · 테라코타 포인트 · 크림 배경
+─────────────────────────────────────────────── */
+:root {
+  /* palette */
+  --cream: #F3EEE0;        /* 배경 */
+  --cream-deep: #ECE4D2;   /* 카드 대비 배경 */
+  --paper: #FBF8F0;        /* 카드 표면 */
+  --ink: #2C2A24;          /* 본문 텍스트 */
+  --muted: #6F695B;        /* 보조 텍스트 */
+  --line: #E2D8C2;         /* 구분선 */
+
+  --green: #2F6B4F;        /* 메인 딥그린 */
+  --green-soft: #3E8E5F;
+  --green-deep: #234E3A;
+  --terracotta: #C96F4A;   /* 포인트 */
+  --terracotta-soft: #DB8A66;
+  --sand: #E3CE9E;
+
+  /* type */
+  --font-serif: 'Nanum Myeongjo', 'Apple SD Gothic Neo', serif;
+  --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+
+  /* shape */
+  --radius: 20px;
+  --radius-lg: 28px;
+  --shadow: 0 6px 24px rgba(44, 42, 36, 0.08);
+  --shadow-hover: 0 12px 34px rgba(44, 42, 36, 0.13);
+  --maxw: 1080px;
+  --maxw-read: 720px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 800; letter-spacing: -0.01em; }
+a { color: var(--green); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; height: auto; }
+
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+.read { max-width: var(--maxw-read); margin: 0 auto; padding: 0 24px; }
+
+/* 공통 섹션 헤더 */
+.eyebrow {
+  display: inline-block; font-family: var(--font-sans); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.08em; color: var(--terracotta); text-transform: uppercase; margin-bottom: 8px;
+}
+.section-title { font-size: clamp(22px, 3vw, 30px); color: var(--green-deep); margin: 0 0 6px; }
+
+/* 버튼 */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--green); color: #fff !important; font-weight: 700;
+  padding: 12px 22px; border-radius: 999px; text-decoration: none !important;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.btn:hover { background: var(--green-deep); transform: translateY(-1px); box-shadow: var(--shadow); }
+.btn-ghost { background: transparent; color: var(--green) !important; border: 1.5px solid var(--line); }
+.btn-ghost:hover { background: var(--paper); border-color: var(--green); }
+
+/* 카드 공통 */
+.card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow); transition: transform .18s ease, box-shadow .18s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+
+/* 태그/뱃지 */
+.badge {
+  display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 11px;
+  border-radius: 999px; background: rgba(47,107,79,0.10); color: var(--green);
+}
+
+/* 접근성: 포커스 */
+:focus-visible { outline: 3px solid var(--terracotta); outline-offset: 2px; border-radius: 6px; }
+
+/* 광고 슬롯 자리 (비활성 시 흔적 없음) */
+.ad-slot { margin: 28px 0; text-align: center; }

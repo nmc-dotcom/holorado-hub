@@ -1,0 +1,31 @@
+---
+interface Props { name: string; desc: string; url: string; emoji: string; status: string; }
+const { name, desc, url, emoji, status } = Astro.props;
+const soon = status === 'soon';
+const Tag = soon ? 'div' : 'a';
+---
+<Tag class:list={['card tool-card', { soon }]} {...(!soon ? { href: url, rel: 'noopener' } : {})}>
+  <div class="ic">{emoji}</div>
+  <div class="meta">
+    <div class="row">
+      <h3 class="name">{name}</h3>
+      {status === 'live' && <span class="live">사용 가능</span>}
+      {soon && <span class="soonbadge">준비 중</span>}
+    </div>
+    <p class="desc">{desc}</p>
+    {!soon && <span class="go">바로가기 →</span>}
+  </div>
+</Tag>
+<style>
+  .tool-card { display: flex; gap: 16px; padding: 20px 22px; align-items: flex-start; text-decoration: none !important; }
+  .tool-card.soon { opacity: 0.65; cursor: default; }
+  .tool-card.soon:hover { transform: none; box-shadow: var(--shadow); }
+  .ic { font-size: 32px; width: 54px; height: 54px; flex: none; display: grid; place-items: center;
+    background: var(--cream-deep); border-radius: 16px; }
+  .row { display: flex; align-items: center; gap: 10px; }
+  .name { margin: 0; font-size: 18px; color: var(--green-deep); }
+  .live { font-size: 11.5px; font-weight: 700; color: #fff; background: var(--green); padding: 2px 9px; border-radius: 999px; }
+  .soonbadge { font-size: 11.5px; font-weight: 700; color: var(--muted); background: var(--sand); padding: 2px 9px; border-radius: 999px; }
+  .desc { margin: 6px 0 8px; font-size: 14px; color: var(--muted); line-height: 1.6; }
+  .go { font-size: 14px; font-weight: 700; color: var(--terracotta); }
+</style>

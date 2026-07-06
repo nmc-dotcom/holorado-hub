@@ -1,0 +1,30 @@
+---
+import Logo from './Logo.astro';
+import { SITE } from '../consts';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container inner">
+    <div class="brand-col">
+      <Logo />
+      <p class="tag">{SITE.tagline}.</p>
+    </div>
+    <nav class="links" aria-label="사이트 링크">
+      <a href="/blog">이야기</a>
+      <a href="/tools">도구</a>
+      <a href="/about">소개</a>
+      <a href="/privacy">개인정보처리방침</a>
+      <a href="https://pdf.holorado.me" rel="noopener">PDF 압축</a>
+    </nav>
+  </div>
+  <div class="container copy">© {year} {SITE.name} · 혼자여도 잘 살고 있습니다.</div>
+</footer>
+<style>
+  .site-footer { margin-top: 72px; border-top: 1px solid var(--line); background: var(--cream-deep); padding: 40px 0 30px; }
+  .inner { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: flex-start; }
+  .tag { color: var(--muted); font-size: 14px; margin: 10px 0 0; }
+  .links { display: flex; flex-wrap: wrap; gap: 18px; }
+  .links a { color: var(--muted); font-weight: 600; font-size: 14px; }
+  .links a:hover { color: var(--green); }
+  .copy { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+</style>

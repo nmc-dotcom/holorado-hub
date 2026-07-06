@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { CATEGORIES } from '../../consts';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const cats = Object.keys(CATEGORIES);
+---
+<BaseLayout title="이야기" description="1인가구 생활, 요리, 생산성, AI 활용 팁 — 혼자여도 잘 사는 데 도움이 되는 홀로라도의 이야기들.">
+  <div class="container page">
+    <header class="page-head">
+      <p class="eyebrow">홀로라도 이야기</p>
+      <h1 class="section-title">읽을거리</h1>
+      <p class="sub">1인가구 · 요리 · 생산성 · AI 활용. 혼자 사는 일상을 조금 더 잘 꾸려가는 이야기.</p>
+    </header>
+
+    {posts.length === 0 ? (
+      <p class="empty">첫 이야기를 준비하고 있어요. 곧 찾아올게요.</p>
+    ) : (
+      <div class="grid">
+        {posts.map((p) => (
+          <PostCard href={`/blog/${p.id}`} title={p.data.title} description={p.data.description}
+            category={p.data.category} pubDate={p.data.pubDate} emoji={p.data.heroEmoji} />
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>
+<style>
+  .page { padding: 44px 0 20px; }
+  .page-head { margin-bottom: 30px; }
+  .sub { color: var(--muted); font-size: 16px; margin-top: 6px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px; }
+  .empty { color: var(--muted); padding: 40px 0; }
+</style>

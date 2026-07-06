@@ -1,0 +1,74 @@
+---
+import { SITE } from '../consts';
+// "홀로라도 ___ ME!!"  — ___ 가 룰렛처럼 바뀜 ("~하 ME" = "~하며 + me" 말장난)
+const WORDS = [
+  '행복하', '잘살', '든든하', '똑똑하', '맛있', '부지런하',
+  '여유롭', '단단하', '따뜻하', '건강하', '알뜰하', '씩씩하',
+  '담백하', '넉넉하', '야무지', '홀가분하', '느긋하', '설레',
+];
+---
+<section class="hero">
+  <div class="container hero-inner">
+    <p class="hero-eyebrow">1인가구 · 요리 · 생산성 · AI 이야기</p>
+    <h1 class="hero-title">
+      <span class="fixed">홀로라도</span>
+      <span class="roll" id="roll" aria-live="polite">
+        <span class="roll-word" id="rollWord">행복하</span>
+      </span>
+      <span class="fixed me">ME!!</span>
+    </h1>
+    <p class="hero-sub">{SITE.tagline}. 혼자 사는 일상을 조금 더 잘, 조금 더 즐겁게.</p>
+    <div class="hero-actions">
+      <a href="/blog" class="btn">이야기 둘러보기</a>
+      <a href="/tools" class="btn btn-ghost">도구 보기</a>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ WORDS }}>
+  const el = document.getElementById('rollWord');
+  const wrap = document.getElementById('roll');
+  if (el && wrap) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let i = Math.floor(Math.random() * WORDS.length);
+    el.textContent = WORDS[i];
+    const next = () => {
+      i = (i + 1 + Math.floor(Math.random() * (WORDS.length - 1))) % WORDS.length;
+      if (reduce) { el.textContent = WORDS[i]; return; }
+      wrap.classList.add('rolling-out');
+      setTimeout(() => {
+        el.textContent = WORDS[i];
+        wrap.classList.remove('rolling-out');
+        wrap.classList.add('rolling-in');
+        setTimeout(() => wrap.classList.remove('rolling-in'), 260);
+      }, 220);
+    };
+    setInterval(next, 2600);
+  }
+</script>
+
+<style>
+  .hero { padding: clamp(48px, 9vw, 96px) 0 clamp(40px, 7vw, 72px); }
+  .hero-inner { text-align: center; }
+  .hero-eyebrow {
+    font-size: 14px; font-weight: 700; letter-spacing: 0.04em; color: var(--terracotta);
+    margin: 0 0 16px;
+  }
+  .hero-title {
+    font-size: clamp(38px, 8vw, 76px); line-height: 1.1; margin: 0 0 20px; color: var(--green-deep);
+    display: flex; flex-wrap: wrap; gap: 0.28em; justify-content: center; align-items: baseline;
+  }
+  .hero-title .fixed { white-space: nowrap; }
+  .hero-title .me { color: var(--terracotta); }
+  .roll {
+    display: inline-block; min-width: 3.2em; position: relative;
+    color: var(--green-soft); text-align: center;
+  }
+  .roll-word { display: inline-block; transition: none; }
+  .rolling-out .roll-word { animation: rollOut .22s ease forwards; }
+  .rolling-in .roll-word { animation: rollIn .26s cubic-bezier(.2,.9,.3,1.2) forwards; }
+  @keyframes rollOut { to { transform: translateY(-0.5em); opacity: 0; } }
+  @keyframes rollIn { from { transform: translateY(0.6em); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .hero-sub { color: var(--muted); font-size: clamp(15px, 2.2vw, 18px); margin: 0 auto 28px; max-width: 30em; }
+  .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+</style>
