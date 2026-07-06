@@ -58,3 +58,53 @@ const date = pubDate.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long
   .prose :global(th) { background: var(--cream-deep); color: var(--green-deep); }
   .post-foot { display: flex; gap: 12px; flex-wrap: wrap; justify-content: space-between; margin-top: 40px; padding-top: 26px; border-top: 1px solid var(--line); }
 </style>
+
+<script>
+  // 페이지가 로드되었을 때 실행 (Astro ViewTransitions를 쓰신다면 'astro:page-load' 이벤트를 사용해도 좋습니다)
+  function initCopyButtons() {
+    const codeBlocks = document.querySelectorAll('pre');
+
+    codeBlocks.forEach((codeBlock) => {
+      // 이미 버튼이 붙어있다면 중복 생성 방지
+      if (codeBlock.querySelector('.copy-button')) return;
+
+      // 1. 버튼 요소 만들기
+      const button = document.createElement('button');
+      button.className = 'copy-button';
+      button.type = 'button';
+      button.innerText = '복사';
+
+      // 2. 코드 블록에 버튼 붙이기
+      codeBlock.appendChild(button);
+
+      // 3. 클릭 시 복사 기능 이벤트 연결
+      button.addEventListener('click', async () => {
+        const codeElement = codeBlock.querySelector('code');
+        const textToCopy = codeElement ? codeElement.innerText : '';
+
+        try {
+          // 클립보드로 텍스트 복사
+          await navigator.clipboard.writeText(textToCopy);
+          
+          // 버튼 상태를 '완료!'로 변경
+          button.innerText = '완료!';
+          button.classList.add('copied');
+
+          // 2초 후에 다시 원래대로 복구
+          setTimeout(() => {
+            button.innerText = '복사';
+            button.classList.remove('copied');
+          }, 2000);
+        } catch (err) {
+          console.error('복사에 실패했습니다:', err);
+          button.innerText = '실패';
+        }
+      });
+    });
+  }
+
+  // 실행
+  initCopyButtons();
+  // 혹시 모를 페이지 전환(View Transitions) 대응
+  document.addEventListener('astro:page-load', initCopyButtons);
+</script>
