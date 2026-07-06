@@ -97,3 +97,25 @@ img { max-width: 100%; height: auto; }
 
 /* 광고 슬롯 자리 (비활성 시 흔적 없음) */
 .ad-slot { margin: 28px 0; text-align: center; }
+
+/* ───────────────────────────────────────────────
+   Astro 마크다운 코드 블록 스타일 누수 수정
+   (코드 블록 내부의 알약 모양 하이라이트 제거)
+─────────────────────────────────────────────── */
+pre code {
+  background-color: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  /* 코드 블록 내부 문자의 배경색을 투명하게 초기화하여 겹침 현상을 방지합니다. */
+}
+
+/* 혹시 모를 인라인 코드 스타일 정의 (필요시 사용) */
+:not(pre) > code {
+  background-color: var(--cream-deep); /* 동숲 무드에 맞춘 약간 짙은 크림색 */
+  color: var(--terracotta);           /* 포인트 컬러로 인라인 글자 강조 */
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+  font-size: 85%;
+  font-family: monospace;
+}
