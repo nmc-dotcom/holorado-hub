@@ -46,6 +46,5 @@ export const TOOLS = [
 export const CATEGORIES: Record<string, { label: string; color: string }> = {
   '1인가구': { label: '1인가구', color: 'var(--green)' },
   '요리': { label: '요리', color: 'var(--terracotta)' },
-  '생산성': { label: '생산성', color: 'var(--green)' },
-  'AI': { label: 'AI 활용', color: 'var(--terracotta)' },
+  '생산성·AI': { label: '생산성·AI', color: 'var(--green)' },
 };
