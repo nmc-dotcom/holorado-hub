@@ -1,0 +1,47 @@
+# ─────────────────────────────────────────────
+# 홀로라도 관리자 (Sveltia CMS) 설정
+# holorado.me/admin 에서 어디서든 글 작성/수정
+# 저장하면 GitHub에 커밋 → Cloudflare가 자동 배포
+# ─────────────────────────────────────────────
+backend:
+  name: github
+  repo: nmc-dotcom/holorado-hub
+  branch: main
+
+# 이미지 업로드 위치 (본문에 사진 넣을 때)
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: blog
+    label: 이야기 (블로그 글)
+    label_singular: 글
+    folder: src/content/blog
+    create: true
+    extension: md
+    format: yaml-frontmatter
+    slug: "{{fields.slug}}"
+    identifier_field: title
+    summary: "{{title}}"
+    sortable_fields: [pubDate, title]
+    fields:
+      - { name: title, label: 제목, widget: string }
+      - name: slug
+        label: URL 주소 (영문)
+        widget: string
+        hint: "예: summer-tips → holorado.me/blog/summer-tips (영문 소문자·숫자·하이픈만)"
+        pattern: ["^[a-z0-9]+(-[a-z0-9]+)*$", "영문 소문자·숫자·하이픈(-)만 사용하세요"]
+      - { name: description, label: 한 줄 설명 (검색·카드에 노출), widget: text }
+      - name: pubDate
+        label: 발행일
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+      - name: category
+        label: 카테고리
+        widget: select
+        options: ["1인가구", "요리", "생산성·AI"]
+      - { name: heroEmoji, label: 대표 이모지, widget: string, required: false, default: "🌱", hint: "카드 썸네일에 크게 표시돼요" }
+      - { name: draft, label: 초안 (켜면 사이트에 안 보임), widget: boolean, default: false, required: false }
+      - { name: body, label: 본문, widget: markdown }
