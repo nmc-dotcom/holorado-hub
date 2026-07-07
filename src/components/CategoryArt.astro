@@ -1,0 +1,59 @@
+---
+// 카테고리별 홀로라도 전용 일러스트 (새싹 섬 로고와 같은 스타일)
+interface Props { category: string; emoji?: string; }
+const { category, emoji = '🌱' } = Astro.props;
+const known = ['1인가구', '요리', '생산성·AI', 'AI', '생산성'];
+---
+{category === '1인가구' && (
+  <svg viewBox="0 0 200 120" class="cat-art" aria-hidden="true">
+    <!-- 창가의 작은 방: 창문+커튼+화분 -->
+    <ellipse cx="100" cy="106" rx="72" ry="9" fill="#D8A76B" opacity="0.55"/>
+    <rect x="52" y="18" width="96" height="76" rx="12" fill="#FBF8F0" stroke="#234E3A" stroke-width="4"/>
+    <line x1="100" y1="22" x2="100" y2="90" stroke="#234E3A" stroke-width="3.5"/>
+    <line x1="56" y1="56" x2="144" y2="56" stroke="#234E3A" stroke-width="3.5"/>
+    <path d="M60 22 Q74 52 62 90 L52 90 L52 26 Z" fill="#DB8A66" opacity="0.9"/>
+    <circle cx="126" cy="40" r="9" fill="#E3CE9E"/>
+    <path d="M120 34 Q126 30 132 34" stroke="#E3CE9E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M112 94 L136 94 L132 110 L116 110 Z" fill="#C96F4A"/>
+    <path d="M124 92 L124 78" stroke="#2F6B4F" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M124 84 Q116 79 113 84 Q119 89 124 85 Z" fill="#4CA36E"/>
+    <path d="M124 79 Q131 74 135 79 Q129 84 124 80 Z" fill="#57B67C"/>
+  </svg>
+)}
+{category === '요리' && (
+  <svg viewBox="0 0 200 120" class="cat-art" aria-hidden="true">
+    <!-- 김이 오르는 냄비 -->
+    <ellipse cx="100" cy="106" rx="70" ry="9" fill="#D8A76B" opacity="0.55"/>
+    <path d="M58 58 L142 58 Q146 58 146 63 L143 92 Q142 102 130 102 L70 102 Q58 102 57 92 L54 63 Q54 58 58 58 Z" fill="#C96F4A"/>
+    <rect x="52" y="52" width="96" height="12" rx="6" fill="#A85838"/>
+    <rect x="36" y="54" width="18" height="8" rx="4" fill="#A85838"/>
+    <rect x="146" y="54" width="18" height="8" rx="4" fill="#A85838"/>
+    <path d="M83 42 Q78 34 84 27 Q90 21 85 13" stroke="#9BC7DA" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <path d="M104 44 Q99 35 105 28 Q111 21 106 12" stroke="#9BC7DA" stroke-width="4.5" fill="none" stroke-linecap="round" opacity="0.85"/>
+    <path d="M124 42 Q120 35 125 29 Q130 23 126 16" stroke="#9BC7DA" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <circle cx="100" cy="80" r="4" fill="#FBF8F0" opacity="0.5"/>
+    <circle cx="84" cy="74" r="3" fill="#FBF8F0" opacity="0.4"/>
+    <circle cx="116" cy="76" r="3" fill="#FBF8F0" opacity="0.4"/>
+  </svg>
+)}
+{(category === '생산성·AI' || category === 'AI' || category === '생산성') && (
+  <svg viewBox="0 0 200 120" class="cat-art" aria-hidden="true">
+    <!-- 책상 위 노트북(화면에 새싹)과 커피 -->
+    <ellipse cx="100" cy="106" rx="74" ry="9" fill="#D8A76B" opacity="0.55"/>
+    <rect x="52" y="26" width="76" height="52" rx="8" fill="#234E3A"/>
+    <rect x="58" y="32" width="64" height="40" rx="5" fill="#FBF8F0"/>
+    <path d="M90 66 L90 48" stroke="#2F6B4F" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M90 56 Q82 51 79 56 Q85 61 90 57 Z" fill="#4CA36E"/>
+    <path d="M90 50 Q97 45 101 50 Q95 55 90 51 Z" fill="#57B67C"/>
+    <path d="M44 78 L136 78 L130 92 Q129 96 124 96 L56 96 Q51 96 50 92 Z" fill="#2F6B4F"/>
+    <rect x="146" y="66" width="26" height="30" rx="6" fill="#DB8A66"/>
+    <path d="M172 72 Q182 74 178 84 Q175 89 172 87" stroke="#DB8A66" stroke-width="5" fill="none"/>
+    <path d="M154 58 Q151 52 156 47" stroke="#9BC7DA" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M164 58 Q161 51 166 46" stroke="#9BC7DA" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
+  </svg>
+)}
+{!known.includes(category) && <span class="cat-fallback">{emoji}</span>}
+<style>
+  .cat-art { width: 78%; max-width: 210px; height: auto; display: block; }
+  .cat-fallback { font-size: 42px; }
+</style>
