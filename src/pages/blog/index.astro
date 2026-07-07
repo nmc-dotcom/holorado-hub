@@ -6,6 +6,20 @@ import { CATEGORIES } from '../../consts';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+// 같은 카테고리 글이 이웃할 때 일러스트가 번갈아 나오도록,
+// 등장 순서 기준으로 카테고리별 0/1을 확정 배정 (해시 충돌 방지)
+// 표기 차이("AI" vs "생산성·AI" 등)에 안전하도록, CategoryArt와 동일한 규칙으로
+// "그림 그룹" 키를 만들어 카운트한다 (실제 카테고리 라벨이 아니라 그룹 기준).
+const __artGroup = (c: string) =>
+  (c === '생산성·AI' || c === 'AI' || c === '생산성') ? '__prod' : c;
+const __catCount: Record<string, number> = {};
+const postVariants = posts.map((p) => {
+  const g = __artGroup(p.data.category);
+  const n = __catCount[g] ?? 0;
+  __catCount[g] = n + 1;
+  return n % 2;
+});
 const cats = Object.keys(CATEGORIES);
 ---
 <BaseLayout title="이야기" description="1인가구 생활, 요리, 생산성, AI 활용 팁 — 혼자여도 잘 사는 데 도움이 되는 홀로라도의 이야기들.">
@@ -20,9 +34,9 @@ const cats = Object.keys(CATEGORIES);
       <p class="empty">첫 이야기를 준비하고 있어요. 곧 찾아올게요.</p>
     ) : (
       <div class="grid">
-        {posts.map((p) => (
+        {posts.map((p, __i) => (
           <PostCard href={`/blog/${p.id}`} title={p.data.title} description={p.data.description}
-            category={p.data.category} pubDate={p.data.pubDate} emoji={p.data.heroEmoji} />
+            category={p.data.category} pubDate={p.data.pubDate} emoji={p.data.heroEmoji} variant={postVariants[__i]} />
         ))}
       </div>
     )}

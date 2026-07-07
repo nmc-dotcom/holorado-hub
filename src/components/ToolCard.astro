@@ -1,11 +1,20 @@
 ---
-interface Props { name: string; desc: string; url: string; emoji: string; status: string; }
-const { name, desc, url, emoji, status } = Astro.props;
+interface Props { name: string; desc: string; url: string; emoji: string; status: string; icon?: string; }
+const { name, desc, url, emoji, status, icon } = Astro.props;
 const soon = status === 'soon';
 const Tag = soon ? 'div' : 'a';
 ---
 <Tag class:list={['card tool-card', { soon }]} {...(!soon ? { href: url, rel: 'noopener' } : {})}>
-  <div class="ic">{emoji}</div>
+  <div class="ic">
+    {icon === 'pdf' ? (
+      <svg viewBox="0 0 40 40" width="30" height="30" aria-hidden="true">
+        <path d="M10 5 L25 5 L31 11 L31 35 L10 35 Z" fill="#FBF8F0" stroke="#234E3A" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M25 5 L25 11 L31 11 Z" fill="#E3CE9E" stroke="#234E3A" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M20 16 L20 20 M17 19 L20 22 L23 19" stroke="#C96F4A" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20 30 L20 26 M17 27 L20 24 L23 27" stroke="#2F6B4F" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    ) : emoji}
+  </div>
   <div class="meta">
     <div class="row">
       <h3 class="name">{name}</h3>

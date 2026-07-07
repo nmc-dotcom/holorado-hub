@@ -183,13 +183,32 @@ pre {
 /* ───────────────────────────────────────────────
    종이 질감 배경 (미세 노이즈) — AI 티 나는 '완벽한 단색' 제거
 ─────────────────────────────────────────────── */
+/* 구겨진 종이 질감: feTurbulence + feDiffuseLighting로 주름 음영 생성.
+   강도 조절: --paper-crumple (0 = 없음, 0.2 = 은은, 0.35 = 강함) */
+:root { --paper-crumple: 0.28; }
 body::before {
   content: '';
   position: fixed; inset: 0; z-index: -1;
   pointer-events: none;
-  opacity: 0.35;
+  opacity: var(--paper-crumple);
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015 0.018' numOctaves='4' seed='7' stitchTiles='stitch' result='t'/%3E%3CfeDiffuseLighting in='t' lighting-color='%23ffffff' surfaceScale='2.2' diffuseConstant='1.1'%3E%3CfeDistantLight azimuth='235' elevation='55'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");
+  background-size: 420px 420px;
+}
+/* 미세 종이 알갱이(기존)를 주름 위에 한 겹 더 */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: -1;
+  pointer-events: none;
+  opacity: 0.22;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.5 0 0 0 0 0.42 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* 물결 섹션 구분선 */
 .wave-divider { display: block; width: 100%; height: 26px; margin: 8px 0; color: var(--line); }
+
+
+/* ───────────────────────────────────────────────
+   찢어진 연습장 엣지 (.torn-strip)
+─────────────────────────────────────────────── */
+.torn-strip { display: block; width: 100%; height: 30px; }

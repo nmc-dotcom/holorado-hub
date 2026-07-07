@@ -1,28 +1,51 @@
 ---
-// 카테고리별 홀로라도 전용 일러스트 (새싹 섬 로고와 같은 스타일)
-interface Props { category: string; emoji?: string; }
-const { category, emoji = '🌱' } = Astro.props;
+// 카테고리별 홀로라도 일러스트 (각 2종).
+// variant: 부모가 "같은 카테고리 내 등장 순서"로 0/1을 명시 전달 → 이웃 글끼리 확정적으로 교대.
+// variant 미전달 시에만 seed(슬러그) 해시로 폴백.
+interface Props { category: string; emoji?: string; seed?: string; variant?: number; }
+const { category, emoji = '🌱', seed = '', variant } = Astro.props;
+let v: number;
+if (variant === 0 || variant === 1) {
+  v = variant;
+} else {
+  let h = 0; for (const ch of seed) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  v = h % 2;
+}
 const known = ['1인가구', '요리', '생산성·AI', 'AI', '생산성'];
+const isProd = category === '생산성·AI' || category === 'AI' || category === '생산성';
 ---
-{category === '1인가구' && (
+{category === '1인가구' && v === 0 && (
   <svg viewBox="0 0 200 120" class="cat-art" aria-hidden="true">
-    <!-- 창가의 작은 방: 창문+커튼+화분 -->
+    <!-- 창가의 방 -->
     <ellipse cx="100" cy="106" rx="72" ry="9" fill="#D8A76B" opacity="0.55"/>
     <rect x="52" y="18" width="96" height="76" rx="12" fill="#FBF8F0" stroke="#234E3A" stroke-width="4"/>
     <line x1="100" y1="22" x2="100" y2="90" stroke="#234E3A" stroke-width="3.5"/>
     <line x1="56" y1="56" x2="144" y2="56" stroke="#234E3A" stroke-width="3.5"/>
     <path d="M60 22 Q74 52 62 90 L52 90 L52 26 Z" fill="#DB8A66" opacity="0.9"/>
     <circle cx="126" cy="40" r="9" fill="#E3CE9E"/>
-    <path d="M120 34 Q126 30 132 34" stroke="#E3CE9E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
     <path d="M112 94 L136 94 L132 110 L116 110 Z" fill="#C96F4A"/>
     <path d="M124 92 L124 78" stroke="#2F6B4F" stroke-width="3.5" stroke-linecap="round"/>
     <path d="M124 84 Q116 79 113 84 Q119 89 124 85 Z" fill="#4CA36E"/>
     <path d="M124 79 Q131 74 135 79 Q129 84 124 80 Z" fill="#57B67C"/>
   </svg>
 )}
-{category === '요리' && (
+{category === '1인가구' && v === 1 && (
   <svg viewBox="0 0 200 120" class="cat-art" aria-hidden="true">
-    <!-- 김이 오르는 냄비 -->
+    <!-- 빨래 건조대 -->
+    <ellipse cx="100" cy="106" rx="72" ry="9" fill="#D8A76B" opacity="0.55"/>
+    <path d="M56 100 L74 34 L126 34 L144 100" stroke="#234E3A" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <line x1="63" y1="58" x2="137" y2="58" stroke="#234E3A" stroke-width="4"/>
+    <line x1="58" y1="80" x2="142" y2="80" stroke="#234E3A" stroke-width="4"/>
+    <path d="M72 58 L96 58 L95 84 Q84 88 73 84 Z" fill="#DB8A66"/>
+    <path d="M104 58 L128 58 L127 78 Q116 82 105 78 Z" fill="#4CA36E"/>
+    <path d="M78 66 L90 66" stroke="#C96F4A" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+    <circle cx="152" cy="30" r="8" fill="#E3CE9E"/>
+    <path d="M146 23 Q152 19 158 23" stroke="#E3CE9E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </svg>
+)}
+{category === '요리' && v === 0 && (
+  <svg viewBox="0 0 200 120" class="cat-art" aria-hidden="true">
+    <!-- 김 오르는 냄비 -->
     <ellipse cx="100" cy="106" rx="70" ry="9" fill="#D8A76B" opacity="0.55"/>
     <path d="M58 58 L142 58 Q146 58 146 63 L143 92 Q142 102 130 102 L70 102 Q58 102 57 92 L54 63 Q54 58 58 58 Z" fill="#C96F4A"/>
     <rect x="52" y="52" width="96" height="12" rx="6" fill="#A85838"/>
@@ -32,13 +55,27 @@ const known = ['1인가구', '요리', '생산성·AI', 'AI', '생산성'];
     <path d="M104 44 Q99 35 105 28 Q111 21 106 12" stroke="#9BC7DA" stroke-width="4.5" fill="none" stroke-linecap="round" opacity="0.85"/>
     <path d="M124 42 Q120 35 125 29 Q130 23 126 16" stroke="#9BC7DA" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
     <circle cx="100" cy="80" r="4" fill="#FBF8F0" opacity="0.5"/>
-    <circle cx="84" cy="74" r="3" fill="#FBF8F0" opacity="0.4"/>
-    <circle cx="116" cy="76" r="3" fill="#FBF8F0" opacity="0.4"/>
   </svg>
 )}
-{(category === '생산성·AI' || category === 'AI' || category === '생산성') && (
+{category === '요리' && v === 1 && (
   <svg viewBox="0 0 200 120" class="cat-art" aria-hidden="true">
-    <!-- 책상 위 노트북(화면에 새싹)과 커피 -->
+    <!-- 도마와 칼, 채소 -->
+    <ellipse cx="100" cy="106" rx="72" ry="9" fill="#D8A76B" opacity="0.55"/>
+    <rect x="42" y="52" width="104" height="48" rx="14" fill="#E3CE9E"/>
+    <rect x="42" y="52" width="104" height="48" rx="14" fill="none" stroke="#C99F5F" stroke-width="3" opacity="0.6"/>
+    <circle cx="136" cy="76" r="5" fill="#C99F5F" opacity="0.7"/>
+    <circle cx="70" cy="70" r="8" fill="#4CA36E"/>
+    <circle cx="84" cy="66" r="8" fill="#57B67C"/>
+    <circle cx="78" cy="80" r="8" fill="#3E8E5F"/>
+    <rect x="96" y="70" width="30" height="9" rx="4.5" fill="#FBF8F0" stroke="#B9B0A0" stroke-width="2"/>
+    <path d="M126 74 L162 66 Q167 72 160 78 L126 79 Z" fill="#FBF8F0" stroke="#8E8677" stroke-width="2.5"/>
+    <path d="M56 40 Q60 30 56 22" stroke="#4CA36E" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M66 42 Q70 33 67 26" stroke="#57B67C" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.8"/>
+  </svg>
+)}
+{isProd && v === 0 && (
+  <svg viewBox="0 0 200 120" class="cat-art" aria-hidden="true">
+    <!-- 노트북과 커피 -->
     <ellipse cx="100" cy="106" rx="74" ry="9" fill="#D8A76B" opacity="0.55"/>
     <rect x="52" y="26" width="76" height="52" rx="8" fill="#234E3A"/>
     <rect x="58" y="32" width="64" height="40" rx="5" fill="#FBF8F0"/>
@@ -49,7 +86,22 @@ const known = ['1인가구', '요리', '생산성·AI', 'AI', '생산성'];
     <rect x="146" y="66" width="26" height="30" rx="6" fill="#DB8A66"/>
     <path d="M172 72 Q182 74 178 84 Q175 89 172 87" stroke="#DB8A66" stroke-width="5" fill="none"/>
     <path d="M154 58 Q151 52 156 47" stroke="#9BC7DA" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-    <path d="M164 58 Q161 51 166 46" stroke="#9BC7DA" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
+  </svg>
+)}
+{isProd && v === 1 && (
+  <svg viewBox="0 0 200 120" class="cat-art" aria-hidden="true">
+    <!-- 메모지와 연필, 전구 -->
+    <ellipse cx="100" cy="106" rx="72" ry="9" fill="#D8A76B" opacity="0.55"/>
+    <rect x="54" y="34" width="66" height="66" rx="8" fill="#E3CE9E" transform="rotate(-4 87 67)"/>
+    <line x1="66" y1="54" x2="106" y2="51" stroke="#B08D4F" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="67" y1="68" x2="107" y2="65" stroke="#B08D4F" stroke-width="3.5" stroke-linecap="round" opacity="0.8"/>
+    <line x1="68" y1="82" x2="96" y2="80" stroke="#B08D4F" stroke-width="3.5" stroke-linecap="round" opacity="0.6"/>
+    <path d="M112 96 L146 54 L156 62 L122 104 L110 108 Z" fill="#C96F4A"/>
+    <path d="M146 54 L156 62 L160 57 Q162 50 155 49 Q149 49 146 54 Z" fill="#DB8A66"/>
+    <path d="M112 96 L122 104 L110 108 Z" fill="#2C2A24"/>
+    <circle cx="152" cy="28" r="11" fill="#E3CE9E"/>
+    <path d="M148 40 L156 40 L155 46 L149 46 Z" fill="#B08D4F"/>
+    <path d="M136 16 L141 21 M168 16 L163 21 M152 8 L152 14" stroke="#E3CE9E" stroke-width="3" stroke-linecap="round"/>
   </svg>
 )}
 {!known.includes(category) && <span class="cat-fallback">{emoji}</span>}

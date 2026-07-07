@@ -31,14 +31,8 @@ export const TOOLS = [
     desc: 'PDF 용량을 브라우저에서 바로 줄이는 무료 도구. 파일이 서버로 전송되지 않아 안전합니다.',
     url: 'https://pdf.holorado.me',
     emoji: '📄',
+    icon: 'pdf',
     status: 'live', // 'live' | 'soon'
-  },
-  {
-    name: '준비 중',
-    desc: '쓸모 있는 도구를 계속 만들어 더할 예정이에요.',
-    url: '#',
-    emoji: '🧰',
-    status: 'soon',
   },
 ];
 
@@ -46,5 +40,6 @@ export const TOOLS = [
 export const CATEGORIES: Record<string, { label: string; color: string }> = {
   '1인가구': { label: '1인가구', color: 'var(--green)' },
   '요리': { label: '요리', color: 'var(--terracotta)' },
-  '생산성·AI': { label: '생산성·AI', color: 'var(--green)' },
+  '생산성': { label: '생산성', color: 'var(--green)' },
+  'AI': { label: 'AI 활용', color: 'var(--terracotta)' },
 };
