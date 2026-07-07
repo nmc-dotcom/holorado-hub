@@ -8,6 +8,13 @@ const WORDS = [
 ];
 ---
 <section class="hero">
+  <svg class="hero-hills" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 170 Q180 120 380 158 Q560 190 760 140 Q950 96 1200 150 L1200 220 L0 220 Z" fill="#E7DFC9" opacity="0.7"/>
+    <path d="M0 196 Q260 156 520 184 Q800 212 1200 178 L1200 220 L0 220 Z" fill="#DCD2B6" opacity="0.55"/>
+  </svg>
+  <svg class="leaf leaf-a" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 34 Q6 22 12 10 Q26 8 30 20 Q30 30 20 34 Z" fill="#4CA36E" opacity="0.5"/><path d="M20 33 Q19 20 22 12" stroke="#2F6B4F" stroke-width="1.6" fill="none" opacity="0.5"/></svg>
+  <svg class="leaf leaf-b" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 34 Q6 22 12 10 Q26 8 30 20 Q30 30 20 34 Z" fill="#DB8A66" opacity="0.4"/><path d="M20 33 Q19 20 22 12" stroke="#C96F4A" stroke-width="1.6" fill="none" opacity="0.45"/></svg>
+  <svg class="leaf leaf-c" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 34 Q6 22 12 10 Q26 8 30 20 Q30 30 20 34 Z" fill="#57B67C" opacity="0.35"/></svg>
   <div class="container hero-inner">
     <p class="hero-eyebrow">1인가구 · 요리 · 생산성 · AI 이야기</p>
     <h1 class="hero-title">
@@ -47,8 +54,14 @@ const WORDS = [
 </script>
 
 <style>
-  .hero { padding: clamp(40px, 8vw, 96px) 0 clamp(36px, 6vw, 72px); }
-  .hero-inner { text-align: center; }
+  .hero { position: relative; overflow: hidden; padding: clamp(40px, 8vw, 96px) 0 clamp(52px, 8vw, 96px); }
+  .hero-hills { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: clamp(90px, 16vw, 200px); z-index: -1; }
+  .leaf { position: absolute; z-index: -1; }
+  .leaf-a { width: 34px; top: 16%; left: 9%; transform: rotate(-18deg); }
+  .leaf-b { width: 26px; top: 30%; right: 12%; transform: rotate(24deg); }
+  .leaf-c { width: 20px; bottom: 26%; left: 20%; transform: rotate(40deg); }
+  @media (max-width: 560px) { .leaf-c { display: none; } .leaf-a { left: 4%; } .leaf-b { right: 5%; } }
+  .hero-inner { text-align: center; position: relative; }
   .hero-eyebrow {
     font-size: clamp(13px, 3.4vw, 15px); font-weight: 700; letter-spacing: 0.02em;
     color: var(--terracotta); margin: 0 0 14px;

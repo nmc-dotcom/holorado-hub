@@ -29,6 +29,10 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     </div>
   </section>
 
+  <svg class="wave-divider container" viewBox="0 0 1000 24" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 12 Q 60 2 125 12 T 250 12 T 375 12 T 500 12 T 625 12 T 750 12 T 875 12 T 1000 12" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </svg>
+
   <section class="container block tools-block">
     <div class="tools-intro">
       <p class="eyebrow">홀로라도가 만든 것</p>
