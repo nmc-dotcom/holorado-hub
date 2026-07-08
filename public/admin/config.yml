@@ -44,4 +44,11 @@ collections:
         options: ["1인가구", "요리", "생산성·AI"]
       - { name: heroEmoji, label: 대표 이모지, widget: string, required: false, default: "🌱", hint: "카드 썸네일에 크게 표시돼요" }
       - { name: draft, label: 초안 (켜면 사이트에 안 보임), widget: boolean, default: false, required: false }
-      - { name: body, label: 본문, widget: markdown }
+      - name: body
+        label: 본문
+        widget: markdown
+        # 기본 에디터를 '순수 마크다운(raw)'으로.
+        # 리치텍스트(rich_text)가 기본이면 저장 시 원본 마크다운을
+        # 재해석하면서 문단/제목 구조가 깨질 수 있어 raw를 앞에 둔다.
+        modes: [raw, rich_text]
+        sanitize_preview: true
