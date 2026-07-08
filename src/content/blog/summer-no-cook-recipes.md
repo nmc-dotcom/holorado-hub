@@ -1,5 +1,6 @@
 ---
 title: "불 안 쓰는 여름 자취 요리 — 30분 안에"
+slug: "summer-no-cook-recipes"
 description: "더운 여름, 가스불 앞에 서기 싫을 때. 불을 거의 안 쓰고 30분 안에 완성하는 1인분 여름 요리들을 모았습니다. 전자레인지와 찬물이면 충분해요."
 pubDate: 2026-07-06
 category: "요리"

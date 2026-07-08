@@ -1,5 +1,6 @@
 ---
 title: "긴 문서·회의록, AI로 5분 만에 정리하는 법"
+slug: "ai-document-summary"
 description: "회의록, PDF 보고서, 긴 이메일 스레드를 AI에게 제대로 요약시키는 실전 프롬프트와 순서를 정리했습니다. 그대로 따라 하면 됩니다."
 pubDate: 2026-07-05
 category: "생산성·AI"

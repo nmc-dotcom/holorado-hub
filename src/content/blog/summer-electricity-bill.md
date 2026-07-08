@@ -1,5 +1,6 @@
 ---
 title: "1인가구 여름 전기세 줄이기 — 에어컨 실사용 팁"
+slug: "summer-electricity-bill"
 description: "혼자 살수록 여름 전기요금이 부담입니다. 에어컨을 끄는 게 답이 아니라 '어떻게 켜느냐'가 핵심이에요. 실제로 요금을 줄인 사용법을 정리했습니다."
 pubDate: 2026-07-06
 category: "1인가구"
