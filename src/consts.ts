@@ -32,7 +32,14 @@ export const TOOLS = [
     url: 'https://pdf.holorado.me',
     emoji: '📄',
     icon: 'pdf',
-    status: 'live', // 'live' | 'soon'
+    status: 'live',
+  },
+  {
+    name: 'OptiImage',
+    desc: '이미지 리사이즈·포맷 변환·압축을 브라우저에서 바로. 배경제거 등 AI 기능도 순차 추가 예정입니다.',
+    url: 'https://img.holorado.me',
+    emoji: '🖼️',
+    status: 'live',
   },
 ];
 
