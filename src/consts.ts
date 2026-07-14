@@ -36,9 +36,16 @@ export const TOOLS = [
   },
   {
     name: 'OptiImage',
-    desc: '이미지 리사이즈·포맷 변환·압축을 브라우저에서 바로. 배경제거 등 AI 기능도 순차 추가 예정입니다.',
+    desc: '이미지 리사이즈·포맷 변환·압축을 브라우저에서 바로. 파일이 서버로 전송되지 않아 안전합니다.',
     url: 'https://img.holorado.me',
     emoji: '🖼️',
+    status: 'live',
+  },
+  {
+    name: 'OptiCalc',
+    desc: '부가세·대출이자·복리·환율 등 생활 속 계산과 단위 변환을 브라우저에서 바로. 회원가입 없이 무료로 사용할 수 있습니다.',
+    url: 'https://calc.holorado.me',
+    emoji: '🧮',
     status: 'live',
   },
 ];
