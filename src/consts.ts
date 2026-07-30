@@ -48,6 +48,13 @@ export const TOOLS = [
     emoji: '🧮',
     status: 'live',
   },
+  {
+    name: 'OptiQR',
+    desc: 'URL·WiFi·명함 QR을 브라우저에서 바로 만들고, 색상과 로고로 꾸미세요. 실제로 읽히는지 미리 검사합니다.',
+    url: 'https://qr.holorado.me',
+    emoji: '🔳',
+    status: 'live',
+  },
 ];
 
 // ─── 카테고리 ─────────────────────────────────
