@@ -4,7 +4,7 @@ description: "중고 서버용 GPU는 싸 보이지만 냉각·전력·드라이
 pubDate: 2026-08-01
 category: "생산성·AI"
 heroEmoji: "🖥️"
-draft: true
+draft: false
 slug: "used-v100-gpu-home-ai-server"
 ---
 
