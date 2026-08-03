@@ -2,7 +2,7 @@
 title: "로컬 LLM 모델 고르기 — VRAM 16GB를 나누는 기준"
 slug: "local-llm-model-vram-budget"
 description: "VRAM이 16GB면 큰 모델부터 올려보고 싶어집니다. 그런데 가중치로 자리를 다 채우면 정작 문맥이 사라져요. 파라미터 수 대신 무엇을 봐야 하는지, 직접 만든 네 줄짜리 시험지까지 정리했습니다."
-pubDate: 2026-08-05
+pubDate: 2026-08-03
 category: "생산성·AI"
 heroEmoji: "🧮"
 draft: false
