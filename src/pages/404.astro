@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="페이지를 찾을 수 없어요" description="요청하신 페이지를 찾을 수 없습니다." noindex>
+  <div class="container page404">
+    <p class="eyebrow">404</p>
+    <h1 class="section-title">앗, 여기엔 아직 아무것도 안 심었어요</h1>
+    <p class="sub">주소가 바뀌었거나 잘못된 링크로 오신 것 같아요. 아래에서 원하는 곳으로 가보세요.</p>
+    <div class="actions">
+      <a href="/" class="btn">홈으로</a>
+      <a href="/blog" class="btn btn-ghost">이야기</a>
+      <a href="/tools" class="btn btn-ghost">도구</a>
+      <a href="/about" class="btn btn-ghost">소개</a>
+    </div>
+  </div>
+</BaseLayout>
+<style>
+  .page404 { padding: 80px 0 96px; text-align: center; }
+  .sub { color: var(--muted); font-size: 16px; margin: 10px auto 30px; max-width: 32em; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+</style>
